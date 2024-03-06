@@ -1,0 +1,15 @@
+<div id="gameContainer">
+    <p class="header">Testowy ekran na 2 graczy w jednym oknie</p>
+    <div id="playerOne" class="player">
+        <h1>Player 1</h1>
+        <button (click)="startNewGame()">Start new game</button>
+        <p>Your game ID: {{ values }}</p>
+    </div>
+    <div id="playerTwo" class="player">
+        <h1>Player 2</h1>
+        <button (click)="connectToExistingGame(values)">Connect to game</button>
+        <p>Connected: {{ isConnected }}</p>
+    </div>
+</div>
+
+<router-outlet />

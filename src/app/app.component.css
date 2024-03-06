@@ -1,0 +1,24 @@
+h1{
+    width: 100%;
+    text-align: center;
+}
+
+#gameContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+    align-content: center;
+}
+
+.header{
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.player{
+flex-grow: 1;
+    border: solid 1px #000;
+}
