@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 
 export class E2sAPIService {
   
-
   apiUrl = 'http://localhost:5011/api/';
 
   constructor(private http: HttpClient) { }
