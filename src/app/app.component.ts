@@ -2,8 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
-import { E2sAPIService} from "./e2s-api.service"
+import { HeaderComponent } from "./header/header.component"
+import { FooterComponent } from "./footer/footer.component";
+
 import { SelectPlayerComponent } from "./select-player/select-player.component"
+import { PlayerProfileComponent } from "./player-profile/player-profile.component"
+
+import { E2sAPIService} from "./e2s-api.service"
+import { GameService } from "./game/game.service"; 
 
 @Component({
   selector: 'app-root',
@@ -11,23 +17,23 @@ import { SelectPlayerComponent } from "./select-player/select-player.component"
   imports: [
     RouterOutlet,
     CommonModule,
-    SelectPlayerComponent
+    HeaderComponent,
+    FooterComponent,
+    SelectPlayerComponent,
+    PlayerProfileComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 
 export class AppComponent {
+
+  constructor(public gameService: GameService, private api: E2sAPIService, ) { }
   
-  private username = "";
-  title = 'Evolve2Survive';
+  public stringEmpty: string = "";
 
   values: any;
   isConnected: boolean = false;
-
-  constructor(private api: E2sAPIService){ }
-
-  isLoggedIn() { return this.username != ""; }
 
   startNewGame() {
     this.api.startNewGame("00001").subscribe(data=> {

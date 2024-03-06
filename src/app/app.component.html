@@ -1,5 +1,13 @@
-<div id="gameContainer">
-    <select-player class="ml-auto mr-auto my-10" *ngIf="isLoggedIn"/>
-</div>
+<app-header/>
 
+<div class="grid h-auto place-items-center">
+    <ng-container *ngIf="gameService.username == stringEmpty">
+        <app-select-player class="w-auto mr-auto ml-auto" />
+    </ng-container>
+
+    <ng-container *ngIf="gameService.username != stringEmpty">
+        <app-player-profile/>
+    </ng-container>
+</div>
+<app-footer/>
 <router-outlet />
