@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { E2sAPIService } from './e2s-api.service';
+import { GameApiService } from './game-api.service';
 
-describe('E2sAPIService', () => {
-  let service: E2sAPIService;
+describe('GameApiService', () => {
+  let service: GameApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(E2sAPIService);
+    service = TestBed.inject(GameApiService);
   });
 
   it('should be created', () => {

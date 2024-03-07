@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Player } from '../models/player';
 
 @Injectable({
   providedIn: 'root'
@@ -6,14 +7,12 @@ import { Injectable } from '@angular/core';
 
 export class GameService {
 
-  public username: string;
+  public player: Player | undefined;
 
-  constructor() {
-    this.username = "";
+  constructor() { }
+
+  setPlayer(player: Player) {
+    this.player = player;
   }
 
-  setUsername(username: string) {
-    this.username = username;
-    //console.log(this.username)
-  }
 }

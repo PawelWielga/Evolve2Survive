@@ -1,11 +1,11 @@
 <app-header/>
 
 <div class="grid h-auto place-items-center">
-    <ng-container *ngIf="gameService.username == stringEmpty">
+    <ng-container *ngIf="gameService.player == undefined">
         <app-select-player class="w-auto mr-auto ml-auto" />
     </ng-container>
 
-    <ng-container *ngIf="gameService.username != stringEmpty">
+    <ng-container *ngIf="gameService.player != undefined">
         <app-player-profile/>
     </ng-container>
 </div>
