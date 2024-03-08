@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GameService } from "../game/game.service"; 
+import { GameApiService } from "../game/game-api.service"; 
+
 
 @Component({
   selector: 'app-player-profile',
@@ -12,9 +14,25 @@ import { GameService } from "../game/game.service";
 
 export class PlayerProfileComponent implements OnInit{
 
-  constructor(public gameService: GameService){}
+  constructor(public gameService: GameService, private gameApiService: GameApiService){}
 
   ngOnInit(): void {
     //get user data
   }
+
+  testFunc() {
+    var id = this.gameService.player?.id
+    if (id != undefined) {
+      this.gameApiService.addWin(id).subscribe(response => { 
+        if (response.id != null) {
+          this.gameService.setPlayer(response);
+          return;
+        }
+      });
+    }
+    else {
+      //jakiś error
+    }
+  }
+
 }

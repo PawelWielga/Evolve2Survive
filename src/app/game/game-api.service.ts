@@ -9,7 +9,7 @@ import { Player} from "../models/player"
 })
 export class GameApiService {
 
-  private apiUrl: string = 'http://localhost:5011/api/Game';
+  private apiUrl: string = 'https://e2sdev.azurewebsites.net/api/Game';
 
   constructor(private http: HttpClient) { }
     
@@ -17,6 +17,11 @@ export class GameApiService {
     let uri = `${this.apiUrl}/LogIn?playerName=${playerName}`;
     return this.http.get<Player>(uri);
   } 
+
+  addWin(playerId: string): Observable<Player> {
+    let uri = `${this.apiUrl}/AddWin?playerId=${playerId}`;
+    return this.http.get<Player>(uri);
+  }
 
   startNewGame(userId: string) : Observable<string> {
     let uri = `${this.apiUrl}/StartNew?userId=${userId}`;
