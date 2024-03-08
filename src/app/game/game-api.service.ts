@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,11 @@ export class GameApiService {
 
   private apiUrl: string = 'https://e2sdev.azurewebsites.net/api/Game';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if (isDevMode()) {
+      this.apiUrl = 'http://localhost:5011/api/Game';
+    }
+   }
     
   logIn(playerName: string) : Observable<Player> {
     let uri = `${this.apiUrl}/LogIn?playerName=${playerName}`;
