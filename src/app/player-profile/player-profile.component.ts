@@ -35,4 +35,12 @@ export class PlayerProfileComponent implements OnInit{
     }
   }
 
+  newGame() {
+    if (this.gameService.player?.id != undefined) {
+      this.gameApiService.startNewGame(this.gameService.player.id).subscribe(response => {
+        console.log(response);
+       })
+    }
+  }
+
 }
