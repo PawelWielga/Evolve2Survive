@@ -14,33 +14,41 @@ import { GameApiService } from "../game/game-api.service";
 
 export class PlayerProfileComponent implements OnInit{
 
+  public playerName: string = ""; 
+  public wins: string = ""; 
+  public loses: string = ""; 
+
   constructor(public gameService: GameService, private gameApiService: GameApiService){}
 
   ngOnInit(): void {
-    //get user data
+    this.playerName = this.gameService.player.playerName;
+    this.wins = this.gameService.player.wins;
+    this.loses = this.gameService.player.loses;
   }
 
+  
+
   testFunc() {
-    var id = this.gameService.player?.id
-    if (id != undefined) {
-      this.gameApiService.addWin(id).subscribe(response => { 
-        if (response.id != null) {
-          this.gameService.setPlayer(response);
-          return;
-        }
-      });
-    }
-    else {
-      //jakiś error
-    }
+    // var id = this.gameService.player?.id
+    // if (id != undefined) {
+    //   this.gameApiService.addWin(id).subscribe(response => { 
+    //     // if (response.id != null) {
+    //     //   this.gameService.setPlayer(response);
+    //     //   return;
+    //     // }
+    //   });
+    // }
+    // else {
+    //   //jakiś error
+    // }
   }
 
   newGame() {
-    if (this.gameService.player?.id != undefined) {
-      this.gameApiService.startNewGame(this.gameService.player.id).subscribe(response => {
-        console.log(response);
-       })
-    }
+    // if (this.gameService.player?.id != undefined) {
+    //   this.gameApiService.startNewGame(this.gameService.player.id).subscribe(response => {
+    //     console.log(response);
+    //    })
+    // }
   }
 
 }

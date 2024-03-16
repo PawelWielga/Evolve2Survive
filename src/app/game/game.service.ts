@@ -7,7 +7,7 @@ import { Player } from '../models/player';
 
 export class GameService {
 
-  public player: Player | undefined;
+  public player: Player | any;
 
   constructor() { }
 
