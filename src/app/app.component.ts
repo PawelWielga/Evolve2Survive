@@ -1,52 +1,73 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from "./header/header.component"
-import { FooterComponent } from "./footer/footer.component";
+import { Subscription } from 'rxjs';
 
-import { SelectPlayerComponent } from "./select-player/select-player.component"
-import { PlayerProfileComponent } from "./player-profile/player-profile.component"
+import { HeaderComponent } from './_components/header/header.component'
+import { FooterComponent } from './_components/footer/footer.component'
 
-import { GameService } from "./game/game.service"; 
+import { PlayerService } from './_services/player.service';
+import { EventBusService } from './_shared/event-bus.service';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    CommonModule,
     HeaderComponent,
     FooterComponent,
-    SelectPlayerComponent,
-    PlayerProfileComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 
 export class AppComponent {
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
-  constructor(
-    public gameService: GameService,
-    // private api: E2sAPIService
-  ) { }
+  eventBusSub?: Subscription;
   
-  public stringEmpty: string = "";
+  constructor(
+    private playerService: PlayerService,
+    private eventBusService: EventBusService,
+    private router: Router
+  ) { }
 
-  // values: any;
-  // isConnected: boolean = false;
+  ngOnInit(): void {
+    this.isLoggedIn = this.playerService.isLoggedIn();
 
-  // startNewGame() {
-  //   this.api.startNewGame("00001").subscribe(data=> {
-  //     this.values = data;
-  //   });
-  // }
+    this.eventBusSub = this.eventBusService.on('logout', () => {
+      this.logout();
+    });
 
-  // connectToExistingGame(id:string){
-  //   this.api.connectToGame("00002", id).subscribe(data => {
-  //     this.isConnected = data;
-  //   })
-  // }
+    if (this.isLoggedIn) {
+      const player = this.playerService.getUser();
+      //this.roles = user.roles;
 
+      //this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = player?.playerName;
+
+      this.router.navigate(["profile"]);
+    }
+  }
+
+  logout(): void {
+    // this.playerService.logout().subscribe({
+    //   next: res => {
+    //     console.log(res);
+        this.playerService.clean();
+        this.router.navigate(["/"]);
+        window.location.reload();
+    //   },
+    //   error: err => {
+    //     console.log(err);
+    //   }
+    // });
+  }
+  
 }

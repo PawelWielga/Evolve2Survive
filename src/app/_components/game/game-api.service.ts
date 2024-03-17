@@ -1,8 +1,8 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Player, PlayerLogIn } from "../models/player"
-import { Game } from "../models/game"
+import { Player, PlayerLogIn } from "../../models/player"
+import { Game } from "../../models/game"
 
 @Injectable({
   providedIn: 'root'

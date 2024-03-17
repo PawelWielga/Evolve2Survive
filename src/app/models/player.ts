@@ -13,3 +13,11 @@ export class PlayerLogIn {
         public password: string,
     ) { }
 }
+
+export class PlayerRegister {
+    constructor(
+        public playerName: string,
+        public password: string,
+        public confirmpPassword: string,
+    ) { }
+}

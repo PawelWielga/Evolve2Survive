@@ -1,8 +1,11 @@
-How to publish angular app on gh-pages
-======================================
-run command once after creating app: ng add angular-cli-ghpages
-
-Publish:
-========
-Build:           ng build --base-href "https://pawelwielga.github.io/Evolve2Survive/"
-Commit and push: npx angular-cli-ghpages --dir=dist/evolve2-survive/browser
+||====================================================================================||
+||                    How to publish angular app on gh-pages                          ||
+||====================================================================================||
+|| 1. run command once after creating app: ng add angular-cli-ghpages                 ||
+||                                                                                    ||
+||====================================================================================||
+|| Publish:                                                                           ||
+||                                                                                    ||
+|| 1. Build: ng build --base-href "https://pawelwielga.github.io/Evolve2Survive/"     ||
+|| 2. Commit and push: npx angular-cli-ghpages --dir=dist/evolve2-survive/browser     ||
+||====================================================================================||
