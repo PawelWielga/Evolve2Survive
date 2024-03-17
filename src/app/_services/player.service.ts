@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Player, PlayerLogIn, PlayerRegister } from '../models/player';
+import { Player, PlayerLogIn, PlayerRegister } from '../_models/player';
 import { Router } from '@angular/router';
 
 const PLAYER_API = 'https://localhost:5011/api/Player/';
