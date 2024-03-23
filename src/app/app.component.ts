@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
-import { HeaderComponent } from './_components/header/header.component'
-import { FooterComponent } from './_components/footer/footer.component'
+import { HeaderComponent } from './_components/static/header/header.component'
+import { FooterComponent } from './_components/static/footer/footer.component'
 
 import { PlayerService } from './_services/player.service';
 import { EventBusService } from './_shared/event-bus.service';
 import { Router, RouterOutlet } from '@angular/router';
+import { Player } from './_models/player';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +23,9 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 
 export class AppComponent {
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
+  public title = "Evolve2Survive";
+  public isLoggedIn = false;
+  public player: Player | undefined;
 
   eventBusSub?: Subscription;
   
@@ -44,30 +43,16 @@ export class AppComponent {
     });
 
     if (this.isLoggedIn) {
-      const player = this.playerService.getUser();
-      //this.roles = user.roles;
-
-      //this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = player?.playerName;
+      this.player = this.playerService.getUser()?.player;
 
       this.router.navigate(["profile"]);
     }
   }
 
   logout(): void {
-    // this.playerService.logout().subscribe({
-    //   next: res => {
-    //     console.log(res);
-        this.playerService.clean();
-        this.router.navigate(["/"]);
-        window.location.reload();
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
+    this.playerService.cleanLocalStorage();
+    this.isLoggedIn = this.playerService.isLoggedIn();
+    this.router.navigate(["/"]);
   }
   
 }

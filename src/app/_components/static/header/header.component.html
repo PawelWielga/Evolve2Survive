@@ -1,0 +1,10 @@
+<div class="flex flex-row items-center">
+    <p class="text-left text-white font-semibold text-3xl pl-5 pt-2 pb-2 w-full">
+        {{title}}
+    </p>
+    <div class="md:w-full w-0"></div>
+    <div *ngIf="this.appComponent.isLoggedIn" class="pr-5">
+        <button class="shadow bg-white hover:bg-blue-400 focus:shadow-outline focus:outline-none text-black hover:text-white border-solid border-2 border-gray-300 hover:border-blue-500 font-bold text-sm px-4 rounded" type="button" (click)="logout()">LOGOUT</button>
+    </div>
+</div>
+
